@@ -1,0 +1,112 @@
+{
+  "app": {
+    "name": "Gmail Backup Next",
+    "tagline": "Copia de seguridad segura de tus mensajes de Gmail mediante POP3"
+  },
+  "login": {
+    "title": "Acceder a Gmail Backup",
+    "subtitle": "Conéctate con tus credenciales de Gmail mediante POP3",
+    "email": "Dirección de Gmail",
+    "password": "Contraseña de aplicación",
+    "emailPlaceholder": "tucorreo@gmail.com",
+    "passwordPlaceholder": "xxxx xxxx xxxx xxxx",
+    "signIn": "Entrar",
+    "signingIn": "Conectando…",
+    "helpTitle": "¿Usas una contraseña de aplicación?",
+    "help": "Gmail requiere una contraseña de aplicación cuando la verificación en dos pasos está activa.",
+    "helpLink": "Aprende cómo crearla",
+    "error": {
+      "invalidCredentials": "Credenciales incorrectas. Verifica tu correo y contraseña de aplicación.",
+      "connectionFailed": "No se pudo conectar al POP3 de Gmail. Asegúrate de que POP esté habilitado en la configuración de Gmail.",
+      "generic": "Ocurrió un error inesperado. Inténtalo de nuevo."
+    }
+  },
+  "sidebar": {
+    "inbox": "Bandeja de entrada",
+    "backupNow": "Hacer copia ahora",
+    "settings": "Configuración",
+    "signOut": "Cerrar sesión",
+    "total": "{{count}} correos",
+    "account": "Cuenta"
+  },
+  "emailList": {
+    "noEmails": "Aún no hay correos copiados.",
+    "noResults": "Ningún correo coincide con tu búsqueda.",
+    "loading": "Cargando correos…",
+    "search": "Buscar en correos",
+    "from": "De",
+    "subject": "Asunto",
+    "date": "Fecha",
+    "size": "Tamaño",
+    "hasAttachment": "Adjunto",
+    "noSubject": "(sin asunto)",
+    "pageOf": "de {{pages}}",
+    "prevPage": "Página anterior",
+    "nextPage": "Página siguiente",
+    "pageInputLabel": "Página",
+    "dateFrom": "Desde",
+    "dateTo": "Hasta",
+    "clearDates": "Quitar fechas"
+  },
+  "emailReader": {
+    "selectEmail": "Selecciona un correo para leerlo",
+    "selectEmailSub": "Elige un correo de la lista para ver su contenido",
+    "from": "De",
+    "to": "Para",
+    "cc": "CC",
+    "date": "Fecha",
+    "subject": "Asunto",
+    "attachments": "Adjuntos",
+    "downloadEml": "Descargar .eml",
+    "downloadAttachment": "Descargar",
+    "noBody": "Este correo no tiene contenido legible.",
+    "plainText": "Texto plano",
+    "htmlView": "Vista HTML",
+    "externalBlocked": "Las imágenes y recursos externos están bloqueados.",
+    "showImages": "Cargar imágenes",
+    "forwardToSelf": "Enviarme a mí",
+    "forwarding": "Enviando…",
+    "forwarded": "¡Enviado!",
+    "forwardError": "Error al enviar"
+  },
+  "backup": {
+    "title": "Copia de seguridad",
+    "description": "Conecta al POP3 de Gmail y descarga nuevos correos en tu carpeta de copia.",
+    "start": "Iniciar copia",
+    "stop": "Detener",
+    "running": "Copia en progreso…",
+    "connecting": "Conectando al POP3 de Gmail…",
+    "complete": "¡Copia completada!",
+    "error": "Error en la copia",
+    "progressLabel": "{{current}} / {{total}}",
+    "newCount": "{{count}} correos nuevos guardados",
+    "skippedCount": "{{count}} ya copiados",
+    "folder": "Carpeta de copia",
+    "lastBackup": "Última copia",
+    "never": "Nunca",
+    "close": "Cerrar",
+    "session": "Sesión {{n}}",
+    "sessionCount": "{{count}} sesiones"
+  },
+  "settings": {
+    "title": "Configuración",
+    "backupFolder": "Carpeta de copia de seguridad",
+    "backupFolderHelp": "Ruta absoluta donde se guardarán los correos. Estructura: carpeta/cuenta/año/mes/día/id.eml",
+    "backupFolderPlaceholder": "/home/usuario/gmail-backup",
+    "language": "Idioma",
+    "english": "Inglés",
+    "spanish": "Español",
+    "save": "Guardar configuración",
+    "saved": "¡Configuración guardada!",
+    "cancel": "Cancelar"
+  },
+  "common": {
+    "loading": "Cargando…",
+    "error": "Error",
+    "retry": "Reintentar",
+    "close": "Cerrar",
+    "bytes": "B",
+    "kb": "KB",
+    "mb": "MB"
+  }
+}

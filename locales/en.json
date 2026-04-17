@@ -1,0 +1,112 @@
+{
+  "app": {
+    "name": "Gmail Backup Next",
+    "tagline": "Secure backup of your Gmail messages via POP3"
+  },
+  "login": {
+    "title": "Sign in to Gmail Backup",
+    "subtitle": "Connect with your Gmail credentials via POP3",
+    "email": "Gmail Address",
+    "password": "App Password",
+    "emailPlaceholder": "you@gmail.com",
+    "passwordPlaceholder": "xxxx xxxx xxxx xxxx",
+    "signIn": "Sign In",
+    "signingIn": "Connecting…",
+    "helpTitle": "Using an App Password?",
+    "help": "Gmail requires an App Password when 2-Step Verification is enabled.",
+    "helpLink": "Learn how to create one",
+    "error": {
+      "invalidCredentials": "Invalid credentials. Please check your email and app password.",
+      "connectionFailed": "Could not connect to Gmail POP3. Make sure POP is enabled in Gmail settings.",
+      "generic": "An unexpected error occurred. Please try again."
+    }
+  },
+  "sidebar": {
+    "inbox": "Inbox",
+    "backupNow": "Backup Now",
+    "settings": "Settings",
+    "signOut": "Sign Out",
+    "total": "{{count}} emails",
+    "account": "Account"
+  },
+  "emailList": {
+    "noEmails": "No emails backed up yet.",
+    "noResults": "No emails match your search.",
+    "loading": "Loading emails…",
+    "search": "Search in emails",
+    "from": "From",
+    "subject": "Subject",
+    "date": "Date",
+    "size": "Size",
+    "hasAttachment": "Attachment",
+    "noSubject": "(no subject)",
+    "pageOf": "of {{pages}}",
+    "prevPage": "Previous page",
+    "nextPage": "Next page",
+    "pageInputLabel": "Page",
+    "dateFrom": "From",
+    "dateTo": "To",
+    "clearDates": "Clear dates"
+  },
+  "emailReader": {
+    "selectEmail": "Select an email to read",
+    "selectEmailSub": "Choose an email from the list to view its contents",
+    "from": "From",
+    "to": "To",
+    "cc": "CC",
+    "date": "Date",
+    "subject": "Subject",
+    "attachments": "Attachments",
+    "downloadEml": "Download .eml",
+    "downloadAttachment": "Download",
+    "noBody": "This email has no readable content.",
+    "plainText": "Plain text",
+    "htmlView": "HTML view",
+    "externalBlocked": "External images and resources are blocked.",
+    "showImages": "Load images",
+    "forwardToSelf": "Send to myself",
+    "forwarding": "Sending…",
+    "forwarded": "Sent!",
+    "forwardError": "Failed to send"
+  },
+  "backup": {
+    "title": "Backup Emails",
+    "description": "Connect to Gmail POP3 and download new emails to your backup folder.",
+    "start": "Start Backup",
+    "stop": "Stop",
+    "running": "Backup in progress…",
+    "connecting": "Connecting to Gmail POP3…",
+    "complete": "Backup complete!",
+    "error": "Backup failed",
+    "progressLabel": "{{current}} / {{total}}",
+    "newCount": "{{count}} new emails saved",
+    "skippedCount": "{{count}} already backed up",
+    "folder": "Backup folder",
+    "lastBackup": "Last backup",
+    "never": "Never",
+    "close": "Close",
+    "session": "Session {{n}}",
+    "sessionCount": "{{count}} sessions"
+  },
+  "settings": {
+    "title": "Settings",
+    "backupFolder": "Backup Folder",
+    "backupFolderHelp": "Absolute path where emails will be saved. Structure: folder/account/year/month/day/id.eml",
+    "backupFolderPlaceholder": "/home/user/gmail-backup",
+    "language": "Language",
+    "english": "English",
+    "spanish": "Spanish",
+    "save": "Save Settings",
+    "saved": "Settings saved!",
+    "cancel": "Cancel"
+  },
+  "common": {
+    "loading": "Loading…",
+    "error": "Error",
+    "retry": "Retry",
+    "close": "Close",
+    "bytes": "B",
+    "kb": "KB",
+    "mb": "MB"
+  }
+}
