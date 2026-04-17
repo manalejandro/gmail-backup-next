@@ -116,6 +116,9 @@ export const config = {
   api: {
     // Disable automatic body parsing – this endpoint is streaming-only
     bodyParser: false,
+    // SSE streams accumulate far more than 4 MB over a long backup run;
+    // disable Next.js's response-size guard which is not meaningful for streaming.
+    responseLimit: false,
   },
   // 0 = no timeout; backup can take many minutes depending on mailbox size
   maxDuration: 0,
