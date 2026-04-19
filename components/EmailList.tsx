@@ -17,7 +17,7 @@ interface EmailListProps {
   onSelect: (email: EmailMeta) => void
   onRefresh: () => void
   onPageChange: (page: number) => void
-  onSearch: (q: string) => void
+  onSearch: (q: string, field: 'all' | 'from' | 'subject') => void
   onDateFilter: (from: string, to: string) => void
 }
 
@@ -66,6 +66,7 @@ export default function EmailList({
 }: EmailListProps) {
   const { t, lang } = useI18n()
   const [searchInput, setSearchInput] = useState('')
+  const [searchField, setSearchField] = useState<'all' | 'from' | 'subject'>('all')
   const [dateFrom, setDateFrom] = useState('')
   const [dateTo, setDateTo] = useState('')
   const [pageInput, setPageInput] = useState(String(page))
@@ -80,11 +81,11 @@ export default function EmailList({
   // Debounce search input → call onSearch
   useEffect(() => {
     const timer = setTimeout(() => {
-      onSearch(searchInput)
+      onSearch(searchInput, searchField)
     }, 350)
     return () => clearTimeout(timer)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchInput])
+  }, [searchInput, searchField])
 
   function handleDateFromChange(v: string) {
     setDateFrom(v)
@@ -112,7 +113,7 @@ export default function EmailList({
   }
 
   return (
-    <div className="w-80 shrink-0 flex flex-col bg-white border-r border-gray-200 h-full">
+    <div className="w-96 shrink-0 flex flex-col bg-white border-r border-gray-200 h-full">
       {/* Search bar */}
       <div className="p-3 border-b border-gray-100 space-y-2">
         {/* Text search */}
@@ -127,6 +128,24 @@ export default function EmailList({
               text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent
               transition"
           />
+        </div>
+
+        {/* Search field selector */}
+        <div className="flex items-center gap-1">
+          {(['all', 'from', 'subject'] as const).map(f => (
+            <button
+              key={f}
+              onClick={() => setSearchField(f)}
+              className={`flex-1 py-1 rounded-full text-xs font-medium transition-colors
+                ${
+                  searchField === f
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'
+                }`}
+            >
+              {f === 'all' ? t('emailList.searchAll') : f === 'from' ? t('emailList.from') : t('emailList.subject')}
+            </button>
+          ))}
         </div>
 
         {/* Date range filter */}

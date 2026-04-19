@@ -68,9 +68,16 @@ async function runBackup(
         } else {
           const emlContent = await pop3.retr(msgNum)
           if (isCancelled()) break
-          const meta = await parseAndSaveEmail(emlContent, uid, email, backupFolder, cache)
-          sessionNewCount++
-          globalNewCount++
+          const { meta, isNew } = await parseAndSaveEmail(emlContent, uid, email, backupFolder, cache)
+          // Only count as new if it was not already in the index.
+          // An email may be re-downloaded when the uidSet and index are
+          // inconsistent (e.g. partial flush); in that case isNew=false and we
+          // must not inflate sessionNewCount, which would prevent the loop from
+          // ever detecting that all emails are done.
+          if (isNew) {
+            sessionNewCount++
+            globalNewCount++
+          }
           sessionCurrent++
           send({
             type: 'progress',

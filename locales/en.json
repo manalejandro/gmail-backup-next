@@ -34,6 +34,7 @@
     "noResults": "No emails match your search.",
     "loading": "Loading emails…",
     "search": "Search in emails",
+    "searchAll": "All",
     "from": "From",
     "subject": "Subject",
     "date": "Date",

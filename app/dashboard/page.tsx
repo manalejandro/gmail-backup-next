@@ -18,6 +18,7 @@ export default function DashboardPage() {
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
+  const [searchField, setSearchField] = useState<'all' | 'from' | 'subject'>('all')
   const [dateFrom, setDateFrom] = useState('')
   const [dateTo, setDateTo] = useState('')
   const LIMIT = 50
@@ -27,11 +28,12 @@ export default function DashboardPage() {
   const [showSettings, setShowSettings] = useState(false)
   const [userEmail, setUserEmail] = useState('')
 
-  const fetchEmails = useCallback(async (p: number, q: string, from: string, to: string) => {
+  const fetchEmails = useCallback(async (p: number, q: string, field: string, from: string, to: string) => {
     setLoading(true)
     try {
       const params = new URLSearchParams({ page: String(p) })
       if (q) params.set('q', q)
+      if (field && field !== 'all') params.set('field', field)
       if (from) params.set('dateFrom', from)
       if (to) params.set('dateTo', to)
       const res = await fetch(`/api/emails?${params}`)
@@ -56,11 +58,12 @@ export default function DashboardPage() {
   }, [])
 
   useEffect(() => {
-    fetchEmails(page, search, dateFrom, dateTo)
-  }, [fetchEmails, page, search, dateFrom, dateTo])
+    fetchEmails(page, search, searchField, dateFrom, dateTo)
+  }, [fetchEmails, page, search, searchField, dateFrom, dateTo])
 
-  function handleSearch(q: string) {
+  function handleSearch(q: string, field: 'all' | 'from' | 'subject') {
     setSearch(q)
+    setSearchField(field)
     setPage(1)
   }
 
@@ -84,7 +87,7 @@ export default function DashboardPage() {
   }
 
   function handleBackupComplete() {
-    fetchEmails(page, search, dateFrom, dateTo)
+    fetchEmails(page, search, searchField, dateFrom, dateTo)
   }
 
   return (
@@ -108,7 +111,7 @@ export default function DashboardPage() {
           selectedId={selectedEmail?.id ?? null}
           loading={loading}
           onSelect={handleSelectEmail}
-          onRefresh={() => fetchEmails(page, search, dateFrom, dateTo)}
+          onRefresh={() => fetchEmails(page, search, searchField, dateFrom, dateTo)}
           onPageChange={handlePageChange}
           onSearch={handleSearch}
           onDateFilter={handleDateFilter}

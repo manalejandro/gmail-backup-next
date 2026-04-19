@@ -99,7 +99,7 @@ export async function parseAndSaveEmail(
   account: string,
   backupFolder: string,
   cache?: BackupCache,
-): Promise<EmailMeta> {
+): Promise<{ meta: EmailMeta; isNew: boolean }> {
   const parsed = await simpleParser(Buffer.from(emlContent, 'binary'))
 
   // Derive a stable, filesystem-safe ID from Message-ID header or content hash
@@ -138,12 +138,16 @@ export async function parseAndSaveEmail(
     read: false,
   }
 
-  // Prepend to index (newest first), skipping duplicates.
+  // Insert into index (sorted by date descending), skipping duplicates.
   // When a BackupCache is provided use it directly – avoids a readFileSync +
   // JSON.parse + writeFileSync on every single email (O(n²) CPU blowup).
   const idx = cache ? cache.index : getEmailIndex(backupFolder, account)
-  if (!idx.some(m => m.uid === uid)) {
+  const isDuplicate = idx.some(m => m.uid === uid)
+  if (!isDuplicate) {
     idx.unshift(meta)
+    // Keep the index sorted by date descending so the order is always
+    // deterministic regardless of download order.
+    idx.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     if (cache) {
       cache.uidSet.add(uid)
       cache.dirtyCount++
@@ -151,9 +155,14 @@ export async function parseAndSaveEmail(
     } else {
       writeIndex(backupFolder, account, idx)
     }
+  } else if (cache && !cache.uidSet.has(uid)) {
+    // Index and uidSet are inconsistent (e.g. manual edit or partial flush).
+    // Repair the uidSet so the backup loop won't re-download this email
+    // indefinitely and never reach sessionNewCount === 0.
+    cache.uidSet.add(uid)
   }
 
-  return meta
+  return { meta, isNew: !isDuplicate }
 }
 
 // ─── Read email ───────────────────────────────────────────────────────────────
